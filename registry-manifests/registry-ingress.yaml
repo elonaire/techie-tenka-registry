@@ -12,13 +12,6 @@ spec:
     - host: registry.techietenka.com
       http:
         paths:
-          - path: /.well-known/acme-challenge/
-            pathType: Prefix
-            backend:
-              service:
-                name: dummy-service
-                port:
-                  number: 80
           - path: /
             pathType: Prefix
             backend:
