@@ -21,4 +21,4 @@ spec:
   tls:  # Keep this section, but remove secretName (or leave empty)
     - hosts:
       - registry.techietenka.com
-      # secretName: techietenka-tls-secret
+      secretName: techietenka-tls-secret
