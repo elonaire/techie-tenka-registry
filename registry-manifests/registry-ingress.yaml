@@ -4,11 +4,8 @@ metadata:
   name: registry-ingress
   namespace: default
   annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    traefik.ingress.kubernetes.io/router.tls: "true"
-    traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt  # ← Key: references the resolver name above
-    # Optional: for HTTP → HTTPS redirect
-    traefik.ingress.kubernetes.io/router.middlewares: redirect-https@kubernetescrd  # if you create a redirect middleware
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
   rules:
     - host: registry.techietenka.com
@@ -23,5 +20,5 @@ spec:
                   number: 5000
   tls:  # Keep this section, but remove secretName (or leave empty)
     - hosts:
-        - registry.techietenka.com
-      # secretName: registry-tls  # ← Comment out or delete this line
+      - registry.techietenka.com
+      secretName: techietenka-tls-secret
